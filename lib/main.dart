@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -94,7 +96,24 @@ class _MyHomePageState extends State<MyHomePage> {
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
+            const Text("Environment Variables (Scroll)",
+                style: TextStyle(fontSize: 25)),
+            SizedBox(
+                height: 100,
+                child: ListView(
+                    children: Platform.environment.entries
+                        .map((e) => Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Text(
+                                "${e.key}:${e.value}",
+                                textAlign: TextAlign.center,
+                              ),
+                            ))
+                        .toList())),
+            const SizedBox(
+              height: 100,
+            ),
             const Text(
               'You have pushed the button this many times:',
             ),
