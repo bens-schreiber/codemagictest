@@ -97,14 +97,14 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Environment Variables (Scroll)",
+            const Text("All Environment Variables (Scroll)",
                 style: TextStyle(fontSize: 25)),
             SizedBox(
                 height: 100,
                 child: ListView(
                     children: Platform.environment.entries
                         .map((e) => Padding(
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: Text(
                                 "${e.key}:${e.value}",
                                 textAlign: TextAlign.center,
@@ -114,12 +114,18 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 100,
             ),
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const Text("Specific Environment Variables",
+                style: TextStyle(fontSize: 25)),
+            SizedBox(
+                height: 100,
+                child: ListView(children: [
+                  Text(Platform.environment["testCodeMagicVariable"] == null
+                      ? "Not found"
+                      : Platform.environment["testCodeMagicVariable"]
+                          .toString())
+                ])),
+            const SizedBox(
+              height: 100,
             ),
           ],
         ),
