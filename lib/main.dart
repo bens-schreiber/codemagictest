@@ -119,14 +119,18 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
                 height: 100,
                 child: ListView(children: [
-                  Text(Platform.environment["testCodeMagicVariable"] == null
-                      ? "Not found"
-                      : Platform.environment["testCodeMagicVariable"]
-                          .toString())
+                  Text(
+                    findVariable(),
+                    textAlign: TextAlign.center,
+                  )
                 ])),
             const SizedBox(
               height: 100,
             ),
+            Text(
+              'counter: $_counter',
+              style: Theme.of(context).textTheme.headline4,
+            )
           ],
         ),
       ),
@@ -137,4 +141,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+}
+
+String findVariable() {
+  String? variable = Platform.environment["testCodeMagicVariable"];
+  return variable ?? "Not found";
 }
